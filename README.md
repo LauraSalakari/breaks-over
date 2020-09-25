@@ -109,6 +109,8 @@ Break's Over is a small but hectic game where your task is to fulfil as many sna
 
 ## Trello
 
+[Trello board!](https://trello.com/b/XfQw0ZQ0/breaks-over)
+
 ## Git
 
 ## Slides
