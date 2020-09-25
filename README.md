@@ -45,6 +45,9 @@ Break's Over is a small but hectic game where your task is to fulfil as many sna
 - createOrder(){}
 - fulfilOrder(){}
 - drawCanvas(){}
+- updateCanvas(){}
+- clearCanvas(){}
+- updateScore(){}
 - gameOver(){}
 
 ## player.js
@@ -64,11 +67,50 @@ Break's Over is a small but hectic game where your task is to fulfil as many sna
 ## ingredient.js
 - Ingredient(){this.name, this.Image, this.spawnPoint[, this.cookingMethod]}
 - drawIngredient(){}
-[- cook(){}]
+- [cook(){}]
 
 # States and States Transitions
-- 
+- splashScene
+  - transition to: on first load, on main menu button click
+- gameScene
+  - transition to: on play
+- gameOverScene
+  - transition to: on time over, on give up
+  
 
+# Tasks
 
+- general - art assets
+- general - base HTML & CSS
+- main - buildDOM
+- main - buildSplashScene
+- main - buildGameScene
+- main - buildGameOverScene
+- main - addEventListener
+- game - startGame
+- game - gameOver
+- game - drawCanvas
+- game - updateCanvas
+- game - clearCanvas
+- player - movement
+- game - playerCollisions
+- ingredient - drawIngredient
+- game - itemInteract
+- player - pickupItem
+- player - showInventory
+- player - depositItem
+- game - createOrder
+- order - drawCard
+- game - fulfilOrder
+- order - clearCard
+- game - updateScore
+
+# Links
+
+## Trello
+
+## Git
+
+## Slides
 
 
