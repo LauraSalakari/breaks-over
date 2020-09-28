@@ -32,7 +32,7 @@ function clearCanvas() {
 }
 
 btnTop.addEventListener("click", () => {
-    console.log("Hello");
+    console.log(typeof currentOrders);
 });
 
 btnBottom.addEventListener("click", () => {
@@ -49,8 +49,7 @@ function startGame() {
     if (currentOrders.length < 2) {
         let newOrder = createOrder();
         currentOrders.push(newOrder);
-        console.log(currentOrders[0].ingredients);
-        console.log(currentOrders[1].ingredients);
+        console.log(currentOrders[0]);
     }
 
 }
@@ -81,7 +80,6 @@ let soda = new Ingredient("soda", "images/soda.png", 400, 200);
 let icecream = new Ingredient("icecream", "images/icecream.png", 580, 300);
 
 let ingArr = [popcorn, carrot, dogbones, cake, soda, icecream];
-
 function spawnIngredients() {
     ingArr.forEach((elem) => {
         ctx.drawImage(elem.image, elem.spawnPointX, elem.spawnPointY, elem.width, elem.height);
@@ -93,14 +91,10 @@ function spawnIngredients() {
 
 
 function createOrder() {
+    currentOrders++;
     if (timer >= 45) return new Order(ingArr, 2);
     else return new Order(ingArr, 3);
 }
-
-function fulfilOrder(){
-
-}
-
 
 //temp player stuff
 
@@ -115,9 +109,8 @@ function drawPlayer() {
     if (player.inventory) ctx.drawImage(player.inventory.image, player.x + 30, player.y - 46, 30, 30);
 }
 
-// movement & interact logic
+// temp movement logic
 document.addEventListener("keydown", (e) => {
-    // movement
     if (e.keyCode == 87 || e.key == 'w') {
         player.direction = "up";
     }
@@ -135,13 +128,7 @@ document.addEventListener("keydown", (e) => {
     if (e.keyCode == 101 || e.key == "e") {
         itemInteract();
     }
-
-    // check order submission
-    if(e.keyCode == 113 || e.key == "q"){
-        clearOrder();
-    }
 });
-
 
 document.addEventListener("keyup", (e) => {
     player.direction = "";
