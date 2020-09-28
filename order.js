@@ -8,10 +8,12 @@ class Order {
 
     draftIngredients() {
         let orderArr = [];
+        let copy = JSON.parse(JSON.stringify(this.options));
 
         for (let i = 0; i < this.n; i++) {
-            let index = Math.floor(Math.random()*this.options.length);
-            orderArr.push(this.options[index]);
+            let index = Math.floor(Math.random()*copy.length);
+            orderArr.push(copy[index]);
+            copy.splice(index, 1);
         }
 
         return orderArr;

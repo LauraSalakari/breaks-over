@@ -93,12 +93,48 @@ function spawnIngredients() {
 
 
 function createOrder() {
-    if (timer >= 45) return new Order(ingArr, 2);
-    else return new Order(ingArr, 3);
+    return new Order(ingArr, 3);
 }
 
-function fulfilOrder(){
 
+function fulfilOrder() {
+    for(let i = 0; i<2; i++){
+        let match = false;
+
+        let dropoffNames = dropoffs.map((elem) => {
+            return elem.content.name;
+        });
+
+        let orderNames = currentOrders[i].ingredients.map((elem) => {
+            return elem.name;
+        });
+
+        let filtered = dropoffNames.filter((elem) => {
+            return orderNames.includes(elem);
+        });
+
+        if(filtered.length === 3){
+            currentOrders.splice(i,1);
+            return true;
+        }
+
+        // dropoffs.forEach((elem) => {
+        //     for(let j = 0; j<currentOrders[i].ingredients.length; j++){
+        //         if(elem.content.name == currentOrders[i].ingredients[j].name){
+        //             match = true;
+        //             break;
+        //         }
+        //         else match = false;
+        //     }
+        // });
+
+        // if(match){
+        //     currentOrders.splice(i,1);
+        //     return true;
+        // } 
+    }
+
+    return false; 
 }
 
 
@@ -137,8 +173,8 @@ document.addEventListener("keydown", (e) => {
     }
 
     // check order submission
-    if(e.keyCode == 113 || e.key == "q"){
-        clearOrder();
+    if (e.keyCode == 113 || e.key == "q") {
+        console.log(fulfilOrder());
     }
 });
 
