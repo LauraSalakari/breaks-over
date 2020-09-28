@@ -59,13 +59,9 @@ player.image.src = "images/chef.png";
 player.invenBubble.src = "images/inven-bubble.png";
 
 function drawPlayer() {
-    // ctx.beginPath();
-    // ctx.fillStyle = "blue";
-    // ctx.arc(player.x, player.y, 20, 0, 2 * Math.PI);
-    // ctx.fill();
-    // ctx.closePath();
     ctx.drawImage(player.image, player.x, player.y, 80, 80);
-    ctx.drawImage(player.invenBubble, player.x+20, player.y-50, 40, 40);
+    ctx.drawImage(player.invenBubble, player.x+20, player.y-50, 50, 50);
+    if(player.inventory) ctx.drawImage(player.inventory.image, player.x + 30, player.y - 46, 30, 30);
 }
 
 // temp movement logic
@@ -85,15 +81,11 @@ document.addEventListener("keydown", (e) => {
 
     // pickup logic
     if(e.key == "e"){
-        for(let i = 0; i< ingArr.length; i++){
-            let x = (player.x + 25)-(ingArr[i].spawnPointX + 25);
-            let y = (player.y + 25)-(ingArr[i].spawnPointY + 25);
-            let distance = Math.hypot(x, y);
-            if(distance < player.pickUpDist){
-                player.inventory = ingArr[i];
-            }
-        }
-        console.log(player.inventory);
+        checkInteract();
+
+        // if(player.inventory){
+        //     ctx.drawImage(player.inventory.image, player.x+25, player.y-40, 30, 30);
+        // }
     }
 });
 
@@ -102,10 +94,25 @@ document.addEventListener("keydown", (e) => {
 // });
 
 
-
-
 intervalId = setInterval(() => {
     requestAnimationFrame(startGame);
 }, 10);
+
+
+function checkInteract() {
+    for (let i = 0; i < ingArr.length; i++) {
+        let x = (player.x + 25) - (ingArr[i].spawnPointX + 25);
+        let y = (player.y + 25) - (ingArr[i].spawnPointY + 25);
+        let distance = Math.hypot(x, y);
+        if (distance < player.pickUpDist) {
+            player.inventory = ingArr[i];
+        }
+    }
+    console.log(player.inventory);
+    console.log(player.inventory.image);
+    // ctx.drawImage(player.inventory.image, player.x + 25, player.y - 40, 30, 30);
+
+}
+
 
 // buildSplashScene();
