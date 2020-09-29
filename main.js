@@ -44,7 +44,13 @@ btnTop.addEventListener("click", () => {
     if(gameState === 0 || gameState === 2){
         gameState = 1;
         clearCanvas();
+        timer = 90;
+        score = 0;
+        currentOrders = [];
         buildGameScene();
+    }
+    else{
+        gameState = 2;
     }
 });
 
