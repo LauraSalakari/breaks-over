@@ -97,3 +97,15 @@ canvas {
     left: 680px;
     top: 60px;
 }
+
+#play{
+    position: absolute;
+    top: 330px;
+    left: 750px;
+}
+
+#sound{
+    position:absolute;
+    top:460px;
+    left:760px;
+}

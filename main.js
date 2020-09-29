@@ -12,7 +12,7 @@ let btnBottom = document.querySelector(".btn-bottom");
 
 let bg = new Image();
 
-let timer = 30;
+let timer = 90;
 let timerId = 0;
 let score = 0;
 let currentOrders = [];
@@ -44,7 +44,7 @@ btnTop.addEventListener("click", () => {
     if(gameState === 0 || gameState === 2){
         gameState = 1;
         clearCanvas();
-        timer = 30;
+        timer = 90;
         score = 0;
         currentOrders = [];
         buildGameScene();
