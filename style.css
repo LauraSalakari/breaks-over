@@ -56,7 +56,8 @@ canvas {
 }
 
 .score {
-    font-size: 1.5em
+    font-size: 1.5em;
+    text-align: center;
 }
 
 .order-cards {
@@ -85,4 +86,14 @@ canvas {
 .ing img {
     height:40px;
     width: 40px;
+}
+
+.timer {
+    height: 50px;
+    padding: 20px;
+    text-align: center;
+    background-color: #F0C836;
+    position: absolute;
+    left: 680px;
+    top: 60px;
 }

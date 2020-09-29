@@ -1,3 +1,5 @@
+// jshint esversion: 10
+
 let canvas = document.querySelector("canvas");
 // canvas.style.backgroundColor = "#626982";
 let ctx = canvas.getContext("2d");
@@ -9,25 +11,29 @@ let btnTop = document.querySelector(".btn-top");
 let btnBottom = document.querySelector(".btn-bottom");
 
 let bg = new Image();
-bg.src = "./images/kitchen.png";
 
-let timer = 90;
+let timer = 30;
+let timerId = 0;
 let score = 0;
 let currentOrders = [];
 
-
-
 function buildSplashScene() {
-    gameState = 0;
-    //ctx.fillText("Break's Over!", 100, 100); // TB replaced by art
+    bg.src = "./images/splashscreen-green.png.png";
+    ctx.drawImage(bg, 0, 0, canvas.width, canvas.height);
 }
 
 function buildGameScene() {
-    gameState = 1;
+    bg.src = "./images/kitchen.png";
+    ctx.drawImage(bg, 0, 0, canvas.width, canvas.height); // draw bg
+    setTimer();
 }
 
 function buildGameOverScene() {
-    gameState = 2;
+    clearCanvas();
+    bg.src = "./images/gameover-temp.png";
+    ctx.drawImage(bg, 0, 0, canvas.width, canvas.height); // draw bg
+    ctx.font = "20px Verdana"
+    ctx.fillText(`YOUR SCORE: ${String(score)}`, 250, 240);
 }
 
 function clearCanvas() {
@@ -35,7 +41,11 @@ function clearCanvas() {
 }
 
 btnTop.addEventListener("click", () => {
-    console.log("Hello");
+    if(gameState === 0 || gameState === 2){
+        gameState = 1;
+        clearCanvas();
+        buildGameScene();
+    }
 });
 
 btnBottom.addEventListener("click", () => {
@@ -96,11 +106,9 @@ function spawnIngredients() {
     // ctx.drawImage(carrot.image, carrot.spawnPointX, carrot.spawnPointY, carrot.width, carrot.height);
 }
 
-
 function createOrder() {
     return new Order(ingArr, 3);
 }
-
 
 function fulfilOrder() {
     console.log("Score: ", score);
@@ -121,6 +129,7 @@ function fulfilOrder() {
 
         if (filtered.length === 3) {
             score += currentOrders[i].score;
+            updateScore();
             currentOrders.splice(i, 1);
             dropoffs.forEach((elem) => {
                 elem.clearDropoff();
@@ -130,12 +139,11 @@ function fulfilOrder() {
     }
     if (score >= 100) score -= 100;
     else score = 0;
+    updateScore();
     return false;
 }
 
-
 //temp player stuff
-
 let player = new Player();
 player.image.src = "images/chef.png";
 player.invenBubble.src = "images/inven-bubble.png";
@@ -181,7 +189,16 @@ document.addEventListener("keyup", (e) => {
 
 
 intervalId = setInterval(() => {
-    requestAnimationFrame(startGame);
+    if(gameState===0){
+        buildSplashScene();
+    }
+    else if(gameState===1){
+        requestAnimationFrame(startGame);
+        if(timer===0) gameState=2;
+    }
+    else{
+        buildGameOverScene();
+    }
 }, 10);
 
 
@@ -233,4 +250,22 @@ function drawCards() {
     }
 }
 
-// buildSplashScene();
+function updateScore(){
+    scoreUI = document.querySelector(".score span");
+    scoreUI.innerText = String(score);
+}
+
+function updateTimer(){
+    timerUI = document.querySelector(".timer span");
+    timerUI.innerText = String(timer);
+}
+
+function setTimer(){
+    timerId = setInterval(()=>{
+        timer--;
+        updateTimer();
+        if(timer === 0){
+            clearInterval(timerId);
+        }
+    }, 1000)
+}
