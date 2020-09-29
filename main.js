@@ -15,6 +15,8 @@ let timer = 90;
 let score = 0;
 let currentOrders = [];
 
+
+
 function buildSplashScene() {
     gameState = 0;
     //ctx.fillText("Break's Over!", 100, 100); // TB replaced by art
@@ -50,11 +52,13 @@ function startGame() {
     if (currentOrders.length < 2) {
         let newOrder = createOrder();
         currentOrders.push(newOrder);
-        console.log(currentOrders[0].ingredients);
-        console.log(currentOrders[1].ingredients);
+        console.log(currentOrders[0]?.ingredients);
+        console.log(currentOrders[1]?.ingredients);
+        drawCards();
     }
-
 }
+
+
 
 let dropoff1 = new Dropoff(150, 20);
 let dropoff2 = new Dropoff(300, 20);
@@ -100,7 +104,7 @@ function createOrder() {
 
 function fulfilOrder() {
     console.log("Score: ", score);
-    for(let i = 0; i<2; i++){
+    for (let i = 0; i < 2; i++) {
         let match = false;
 
         let dropoffNames = dropoffs.map((elem) => {
@@ -115,18 +119,18 @@ function fulfilOrder() {
             return orderNames.includes(elem);
         });
 
-        if(filtered.length === 3){
+        if (filtered.length === 3) {
             score += currentOrders[i].score;
-            currentOrders.splice(i,1);
-            dropoffs.forEach((elem) =>{
+            currentOrders.splice(i, 1);
+            dropoffs.forEach((elem) => {
                 elem.clearDropoff();
             });
             return true;
         }
     }
-    if(score >= 100) score -= 100;
+    if (score >= 100) score -= 100;
     else score = 0;
-    return false; 
+    return false;
 }
 
 
@@ -205,5 +209,28 @@ function itemInteract() {
     }
 }
 
+let ing00 = document.querySelector("#ing00");
+let ing01 = document.querySelector("#ing01");
+let ing02 = document.querySelector("#ing02");
+let ing10 = document.querySelector("#ing10");
+let ing11 = document.querySelector("#ing11");
+let ing12 = document.querySelector("#ing12");
+
+let orderCardImg = [ing00, ing01, ing02, ing10, ing11, ing12];
+
+function drawCards() {
+    if(currentOrders.length === 2){
+        orderCardImg.forEach((elem) => {
+            elem.innerHTML = ""; 
+        });
+
+        ing00.appendChild(currentOrders[0].ingredients[0].image);
+        ing01.appendChild(currentOrders[0].ingredients[1].image);
+        ing02.appendChild(currentOrders[0].ingredients[2].image);
+        ing10.appendChild(currentOrders[1].ingredients[0].image.cloneNode(true));
+        ing11.appendChild(currentOrders[1].ingredients[1].image.cloneNode(true));
+        ing12.appendChild(currentOrders[1].ingredients[2].image.cloneNode(true));
+    }
+}
 
 // buildSplashScene();

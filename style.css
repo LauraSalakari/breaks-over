@@ -48,7 +48,7 @@ canvas {
     margin-left: 940px;
     margin-top: 60px;
     width: 200px;
-    background-color: blue;
+    background-color: #50959F;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -77,4 +77,12 @@ canvas {
     width: 60px;
     margin: 5px;
     border: 1px solid black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.ing img {
+    height:40px;
+    width: 40px;
 }
