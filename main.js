@@ -44,13 +44,14 @@ btnTop.addEventListener("click", () => {
     if(gameState === 0 || gameState === 2){
         gameState = 1;
         clearCanvas();
-        timer = 90;
+        timer = 30;
         score = 0;
         currentOrders = [];
         buildGameScene();
     }
     else{
         gameState = 2;
+        timer = 0;
     }
 });
 
@@ -270,7 +271,7 @@ function setTimer(){
     timerId = setInterval(()=>{
         timer--;
         updateTimer();
-        if(timer === 0){
+        if(timer <= 0){
             clearInterval(timerId);
         }
     }, 1000)
