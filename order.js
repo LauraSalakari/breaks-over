@@ -18,4 +18,10 @@ class Order {
 
         return orderArr;
     }
+
+    drawOrder(){
+        let orderDiv = document.createElement("div");
+
+        orderDiv.innerHTML = "";
+    }
 }

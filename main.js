@@ -12,6 +12,7 @@ let bg = new Image();
 bg.src = "./images/kitchen.png";
 
 let timer = 90;
+let score = 0;
 let currentOrders = [];
 
 function buildSplashScene() {
@@ -98,6 +99,7 @@ function createOrder() {
 
 
 function fulfilOrder() {
+    console.log("Score: ", score);
     for(let i = 0; i<2; i++){
         let match = false;
 
@@ -114,26 +116,16 @@ function fulfilOrder() {
         });
 
         if(filtered.length === 3){
+            score += currentOrders[i].score;
             currentOrders.splice(i,1);
+            dropoffs.forEach((elem) =>{
+                elem.clearDropoff();
+            });
             return true;
         }
-
-        // dropoffs.forEach((elem) => {
-        //     for(let j = 0; j<currentOrders[i].ingredients.length; j++){
-        //         if(elem.content.name == currentOrders[i].ingredients[j].name){
-        //             match = true;
-        //             break;
-        //         }
-        //         else match = false;
-        //     }
-        // });
-
-        // if(match){
-        //     currentOrders.splice(i,1);
-        //     return true;
-        // } 
     }
-
+    if(score >= 100) score -= 100;
+    else score = 0;
     return false; 
 }
 

@@ -6,4 +6,8 @@ class Dropoff {
         this.imageX = this.x - 20;
         this.imageY = this.y;
     }
+
+    clearDropoff(){
+        this.content = "";
+    }
 }
