@@ -41,11 +41,11 @@ let orderCardImg = [ing00, ing01, ing02, ing10, ing11, ing12];
 
 // create sound variables
 
-let submitCorrect = new Audio("audio/submit-correct-sound.wav");
-let submitWrong = new Audio("audio/submit-wrong-sound.wav");
-let pickupSound = new Audio("audio/pickup-sound.wav");
-let depositSound = new Audio("audio/deposit-sound.wav");
-let clickSound = new Audio("audio/click-sound.wav");
+let submitCorrect = new Audio("audio/submit-correct-sound.mp3");
+let submitWrong = new Audio("audio/submit-wrong-sound.mp3");
+let pickupSound = new Audio("audio/pickup-sound.mp3");
+let depositSound = new Audio("audio/deposit-sound.mp3");
+let clickSound = new Audio("audio/click-sound.mp3");
 
 // movement & interact logic
 document.addEventListener("keydown", (e) => {
