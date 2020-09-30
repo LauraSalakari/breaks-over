@@ -49,6 +49,7 @@ function clearCanvas() {
 }
 
 btnTop.addEventListener("click", () => {
+    clickSound.play();
     if (gameState === 0 || gameState === 2) {
         gameState = 1;
         clearCanvas();
@@ -65,6 +66,7 @@ btnTop.addEventListener("click", () => {
 });
 
 btnBottom.addEventListener("click", () => {
+    clickSound.play();
     console.log("World");
 });
 

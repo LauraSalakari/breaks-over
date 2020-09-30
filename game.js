@@ -39,6 +39,45 @@ let ing12 = document.querySelector("#ing12");
 
 let orderCardImg = [ing00, ing01, ing02, ing10, ing11, ing12];
 
+// create sound variables
+
+let submitCorrect = new Audio("/audio/submit-correct-sound.wav");
+let submitWrong = new Audio("/audio/submit-wrong-sound.wav");
+let pickupSound = new Audio("/audio/pickup-sound.wav");
+let depositSound = new Audio("/audio/deposit-sound.wav");
+let clickSound = new Audio("/audio/click-sound.wav");
+
+// movement & interact logic
+document.addEventListener("keydown", (e) => {
+    // movement
+    if (e.keyCode == 87 || e.key == 'w') {
+        player.direction = "up";
+    }
+    else if (e.keyCode == 65 || e.key == 'a') {
+        player.direction = "left";
+    }
+    else if (e.keyCode == 83 || e.key == 's') {
+        player.direction = "down";
+    }
+    else if (e.keyCode == 68 || e.key == 'd') {
+        player.direction = "right";
+    }
+
+    // pickup logic
+    if (e.keyCode == 101 || e.key == "e") {
+        itemInteract();
+    }
+
+    // check order submission
+    if (e.keyCode == 113 || e.key == "q") {
+        console.log(fulfilOrder());
+    }
+});
+
+document.addEventListener("keyup", (e) => {
+    player.direction = "";
+});
+
 function startGame() {
     clearCanvas();
     ctx.drawImage(bg, 0, 0, canvas.width, canvas.height); // draw bg
@@ -55,18 +94,13 @@ function startGame() {
     }
 }
 
-function drawDropoff() {
-    dropoffs.forEach((elem) => {
-        ctx.beginPath();
-        ctx.fillStyle = "#7ef2b6";
-        ctx.arc(elem.x, elem.y, 70, 0, 2 * Math.PI);
-        ctx.fill();
-        ctx.closePath();
-        if (elem.content) {
-            ctx.drawImage(elem.content.image, elem.imageX, elem.imageY, 40, 40);
-        }
-    });
+function drawPlayer() {
+    player.movement();
+    ctx.drawImage(player.image, player.x, player.y, 80, 80);
+    ctx.drawImage(player.invenBubble, player.x + 20, player.y - 50, 50, 50);
+    if (player.inventory) ctx.drawImage(player.inventory.image, player.x + 30, player.y - 46, 30, 30);
 }
+
 
 function spawnIngredients() {
     ingArr.forEach((elem) => {
@@ -97,6 +131,7 @@ function fulfilOrder() {
 
         if (filtered.length === 3) {
             score += currentOrders[i].score;
+            playSound("correct");
             updateScore();
             currentOrders.splice(i, 1);
             dropoffs.forEach((elem) => {
@@ -107,48 +142,23 @@ function fulfilOrder() {
     }
     if (score >= 100) score -= 100;
     else score = 0;
+    playSound("wrong");
     updateScore();
     return false;
 }
 
-function drawPlayer() {
-    player.movement();
-    ctx.drawImage(player.image, player.x, player.y, 80, 80);
-    ctx.drawImage(player.invenBubble, player.x + 20, player.y - 50, 50, 50);
-    if (player.inventory) ctx.drawImage(player.inventory.image, player.x + 30, player.y - 46, 30, 30);
+function drawDropoff() {
+    dropoffs.forEach((elem) => {
+        ctx.beginPath();
+        ctx.fillStyle = "#7ef2b6";
+        ctx.arc(elem.x, elem.y, 70, 0, 2 * Math.PI);
+        ctx.fill();
+        ctx.closePath();
+        if (elem.content) {
+            ctx.drawImage(elem.content.image, elem.imageX, elem.imageY, 40, 40);
+        }
+    });
 }
-
-// movement & interact logic
-document.addEventListener("keydown", (e) => {
-    // movement
-    if (e.keyCode == 87 || e.key == 'w') {
-        player.direction = "up";
-    }
-    else if (e.keyCode == 65 || e.key == 'a') {
-        player.direction = "left";
-    }
-    else if (e.keyCode == 83 || e.key == 's') {
-        player.direction = "down";
-    }
-    else if (e.keyCode == 68 || e.key == 'd') {
-        player.direction = "right";
-    }
-
-    // pickup logic
-    if (e.keyCode == 101 || e.key == "e") {
-        itemInteract();
-    }
-
-    // check order submission
-    if (e.keyCode == 113 || e.key == "q") {
-        console.log(fulfilOrder());
-    }
-});
-
-
-document.addEventListener("keyup", (e) => {
-    player.direction = "";
-});
 
 function itemInteract() {
     if (!player.inventory) {
@@ -157,6 +167,7 @@ function itemInteract() {
             let y = (player.y + 25) - (ingArr[i].spawnPointY + 25);
             let distance = Math.hypot(x, y);
             if (distance <= player.pickUpDist) {
+                playSound("pickup");
                 player.inventory = ingArr[i];
             }
         }
@@ -167,6 +178,7 @@ function itemInteract() {
             let y = (player.y + 25) - dropoffs[i].y;
             let distance = Math.hypot(x, y);
             if (distance <= player.pickUpDist) {
+                playSound("deposit");
                 dropoffs[i].content = player.inventory;
                 player.inventory = "";
             }
@@ -210,4 +222,26 @@ function setTimer() {
             timer = 0;
         }
     }, 1000)
+}
+
+function playSound(action){
+    switch (action){
+        case "correct":
+            if(gameState===1) submitCorrect.play();
+            break;
+        case "wrong":
+            if(gameState===1) submitWrong.play();
+            break;
+        case "pickup":
+            pickupSound.play();
+            break;
+        case "deposit":
+            depositSound.play();
+            break;
+        case "click":
+            clickSound.play();
+            break;
+        default:
+            break;
+    }
 }
