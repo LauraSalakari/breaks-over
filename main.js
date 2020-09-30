@@ -69,7 +69,7 @@ btnTop.addEventListener("click", () => {
 btnBottom.addEventListener("click", () => {
     playSound("click");
     playSounds = !playSounds;
-    console.log("World");
+    playSound("click");
 });
 
 window.addEventListener("load", () => {

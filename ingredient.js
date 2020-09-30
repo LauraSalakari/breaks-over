@@ -8,8 +8,4 @@ class Ingredient {
         this.spawnPointX = spawnX;
         this.spawnPointY = spawnY;
     }
-
-    drawIngredient(){
-        // drawImage(this.image, this.spawnPointX, this.spawnPointY, this.width, this.height);
-    }
 }
