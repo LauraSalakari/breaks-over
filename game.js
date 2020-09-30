@@ -203,8 +203,9 @@ function setTimer() {
     timerId = setInterval(() => {
         timer--;
         updateTimer();
-        if (timer <= 1) {
-            
+        if (timer <= 0) {
+            // gameState = 2;
+            // buildGameOverScene();
             clearInterval(timerId);
             timer = 0;
         }

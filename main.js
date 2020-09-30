@@ -30,6 +30,7 @@ function buildGameScene() {
         requestAnimationFrame(startGame);
         if (timer === 0) {
             gameState = 2;
+            buildGameOverScene();
             clearInterval(intervalId);
         }
     }, 10);
