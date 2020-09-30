@@ -216,32 +216,32 @@ function setTimer() {
         timer--;
         updateTimer();
         if (timer <= 0) {
-            // gameState = 2;
-            // buildGameOverScene();
             clearInterval(timerId);
             timer = 0;
         }
     }, 1000)
 }
 
-function playSound(action){
-    switch (action){
-        case "correct":
-            if(gameState===1) submitCorrect.play();
-            break;
-        case "wrong":
-            if(gameState===1) submitWrong.play();
-            break;
-        case "pickup":
-            pickupSound.play();
-            break;
-        case "deposit":
-            depositSound.play();
-            break;
-        case "click":
-            clickSound.play();
-            break;
-        default:
-            break;
+function playSound(action) {
+    if (playSounds) {
+        switch (action) {
+            case "correct":
+                if (gameState === 1) submitCorrect.play();
+                break;
+            case "wrong":
+                if (gameState === 1) submitWrong.play();
+                break;
+            case "pickup":
+                pickupSound.play();
+                break;
+            case "deposit":
+                depositSound.play();
+                break;
+            case "click":
+                clickSound.play();
+                break;
+            default:
+                break;
+        }
     }
 }
