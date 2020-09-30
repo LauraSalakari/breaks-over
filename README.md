@@ -113,6 +113,9 @@ Break's Over is a small but hectic game where your task is to fulfil as many sna
 
 ## Git
 
+[Github Repository](https://github.com/LauraSalakari/breaks-over)
+[Github Pages](https://laurasalakari.github.io/breaks-over/)
+
 ## Slides
 
 
