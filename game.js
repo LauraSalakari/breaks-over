@@ -46,6 +46,7 @@ let submitWrong = new Audio("audio/submit-wrong-sound.mp3");
 let pickupSound = new Audio("audio/pickup-sound.mp3");
 let depositSound = new Audio("audio/deposit-sound.mp3");
 let clickSound = new Audio("audio/click-sound.mp3");
+let timerSound = new Audio("audio/timer-sound.mp3");
 
 // movement & interact logic
 document.addEventListener("keydown", (e) => {
@@ -212,36 +213,38 @@ function updateTimer() {
 }
 
 function setTimer() {
+    // timerSound.play();
+    // timerSound.loop = true;
     timerId = setInterval(() => {
         timer--;
         updateTimer();
         if (timer <= 0) {
-            // gameState = 2;
-            // buildGameOverScene();
             clearInterval(timerId);
             timer = 0;
         }
     }, 1000)
 }
 
-function playSound(action){
-    switch (action){
-        case "correct":
-            if(gameState===1) submitCorrect.play();
-            break;
-        case "wrong":
-            if(gameState===1) submitWrong.play();
-            break;
-        case "pickup":
-            pickupSound.play();
-            break;
-        case "deposit":
-            depositSound.play();
-            break;
-        case "click":
-            clickSound.play();
-            break;
-        default:
-            break;
+function playSound(action) {
+    if (playSounds) {
+        switch (action) {
+            case "correct":
+                if (gameState === 1) submitCorrect.play();
+                break;
+            case "wrong":
+                if (gameState === 1) submitWrong.play();
+                break;
+            case "pickup":
+                pickupSound.play();
+                break;
+            case "deposit":
+                depositSound.play();
+                break;
+            case "click":
+                clickSound.play();
+                break;
+            default:
+                break;
+        }
     }
 }

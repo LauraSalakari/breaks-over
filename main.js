@@ -2,6 +2,7 @@ let canvas = document.querySelector("canvas");
 let ctx = canvas.getContext("2d");
 let splash = document.querySelector("#splash");
 let gameover = document.querySelector("#gameover");
+let playSounds = true;
 
 let intervalId = 0;
 let gameState = 0; //0 for splash, 1 for game, 2 for gameover
@@ -67,7 +68,8 @@ btnTop.addEventListener("click", () => {
 
 btnBottom.addEventListener("click", () => {
     playSound("click");
-    console.log("World");
+    playSounds = !playSounds;
+    playSound("click");
 });
 
 window.addEventListener("load", () => {
