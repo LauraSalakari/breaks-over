@@ -3,7 +3,7 @@
 body {
   font-family: "Gloria Hallelujah";
   background-color: #2f3438;
-  background-image: url("images/bg-tv.png");
+  background-image: url("../images/bg-tv.png");
   background-size: 900px 700px;
   background-repeat: no-repeat;
   margin: 0;
