@@ -11,6 +11,14 @@ let player = new Player();
 player.image.src = "images/chef.png";
 player.invenBubble.src = "images/inven-bubble.png";
 
+// create player 2
+
+let player2 = new Player();
+player2.image.src = "images/player2.png";
+player2.invenBubble.src = "images/inven-bubble.png";
+player2.x = 400;
+player2.y = 100;
+
 // create dropoffs
 
 let dropoff1 = new Dropoff(150, 20);
@@ -40,7 +48,7 @@ let ing12 = document.querySelector("#ing12");
 let orderCardImg = [ing00, ing01, ing02, ing10, ing11, ing12];
 
 // create other DOM elements
-let scoreUI = document.querySelector(".score span");    
+let scoreUI = document.querySelector(".score span");
 let timerUI = document.querySelector(".timer span");
 
 // create sound variables
@@ -54,6 +62,7 @@ let tickingSound = new Audio("audio/ticking-sound.mp3");
 
 // movement & interact logic
 document.addEventListener("keydown", (e) => {
+    // player 1
     // movement
     if (e.keyCode == 87 || e.key == 'w') {
         player.direction = "up";
@@ -70,17 +79,48 @@ document.addEventListener("keydown", (e) => {
 
     // pickup logic
     if (e.keyCode == 101 || e.key == "e") {
-        itemInteract();
+        itemInteract(true);
     }
 
     // check order submission
     if (e.keyCode == 113 || e.key == "q") {
         console.log(fulfilOrder());
     }
+
+    if (twoPlayers) {
+        // movement
+        if (e.keyCode == 105 || e.key == 'i') {
+            player2.direction = "up";
+        }
+        else if (e.keyCode == 106 || e.key == 'j') {
+            player2.direction = "left";
+        }
+        else if (e.keyCode == 107 || e.key == 'k') {
+            player2.direction = "down";
+        }
+        else if (e.keyCode == 108 || e.key == 'l') {
+            player2.direction = "right";
+        }
+
+        // pickup logic
+        if (e.keyCode == 111 || e.key == "o") {
+            itemInteract(false);
+        }
+
+        // check order submission
+        if (e.keyCode == 13 || e.key == "u") {
+            console.log(fulfilOrder());
+        }
+    }
 });
 
 document.addEventListener("keyup", (e) => {
-    player.direction = "";
+    if((e.keyCode == 87 || e.key == 'w') || (e.keyCode == 65 || e.key == 'a') || (e.keyCode == 83 || e.key == 's') ||(e.keyCode == 68 || e.key == 'd')){
+        player.direction = "";
+    }
+    else if((e.keyCode == 105 || e.key == 'i') || (e.keyCode == 106 || e.key == 'j') || (e.keyCode == 107 || e.key == 'k') ||(e.keyCode == 108 || e.key == 'l')){
+        player2.direction = "";
+    }
 });
 
 function startGame() {
@@ -104,6 +144,13 @@ function drawPlayer() {
     ctx.drawImage(player.image, player.x, player.y, 80, 80);
     ctx.drawImage(player.invenBubble, player.x + 20, player.y - 50, 50, 50);
     if (player.inventory) ctx.drawImage(player.inventory.image, player.x + 30, player.y - 46, 30, 30);
+
+    if (twoPlayers) {
+        player2.movement();
+        ctx.drawImage(player2.image, player2.x, player2.y, 80, 80);
+        ctx.drawImage(player2.invenBubble, player2.x + 20, player2.y - 50, 50, 50);
+        if (player2.inventory) ctx.drawImage(player2.inventory.image, player2.x + 30, player2.y - 46, 30, 30);
+    }
 }
 
 
@@ -165,27 +212,56 @@ function drawDropoff() {
     });
 }
 
-function itemInteract() {
-    if (!player.inventory) {
-        for (let i = 0; i < ingArr.length; i++) {
-            let x = (player.x + 25) - (ingArr[i].spawnPointX + 25);
-            let y = (player.y + 25) - (ingArr[i].spawnPointY + 25);
-            let distance = Math.hypot(x, y);
-            if (distance <= player.pickUpDist) {
-                playSound("pickup");
-                player.inventory = ingArr[i];
+function itemInteract(player1) {
+    if (player1 === true) {
+        if (!player.inventory) {
+            for (let i = 0; i < ingArr.length; i++) {
+                let x = (player.x + 25) - (ingArr[i].spawnPointX + 25);
+                let y = (player.y + 25) - (ingArr[i].spawnPointY + 25);
+                let distance = Math.hypot(x, y);
+                if (distance <= player.pickUpDist) {
+                    playSound("pickup");
+                    player.inventory = ingArr[i];
+                }
+            }
+        }
+        else {
+            for (let i = 0; i < dropoffs.length; i++) {
+                let x = (player.x + 25) - dropoffs[i].x;
+                let y = (player.y + 25) - dropoffs[i].y;
+                let distance = Math.hypot(x, y);
+                if (distance <= player.pickUpDist) {
+                    playSound("deposit");
+                    dropoffs[i].content = player.inventory;
+                    player.inventory = "";
+                }
             }
         }
     }
     else {
-        for (let i = 0; i < dropoffs.length; i++) {
-            let x = (player.x + 25) - dropoffs[i].x;
-            let y = (player.y + 25) - dropoffs[i].y;
-            let distance = Math.hypot(x, y);
-            if (distance <= player.pickUpDist) {
-                playSound("deposit");
-                dropoffs[i].content = player.inventory;
-                player.inventory = "";
+        if (twoPlayers) {
+            if (!player2.inventory) {
+                for (let i = 0; i < ingArr.length; i++) {
+                    let x = (player2.x + 25) - (ingArr[i].spawnPointX + 25);
+                    let y = (player2.y + 25) - (ingArr[i].spawnPointY + 25);
+                    let distance = Math.hypot(x, y);
+                    if (distance <= player2.pickUpDist) {
+                        playSound("pickup");
+                        player2.inventory = ingArr[i];
+                    }
+                }
+            }
+            else {
+                for (let i = 0; i < dropoffs.length; i++) {
+                    let x = (player2.x + 25) - dropoffs[i].x;
+                    let y = (player2.y + 25) - dropoffs[i].y;
+                    let distance = Math.hypot(x, y);
+                    if (distance <= player2.pickUpDist) {
+                        playSound("deposit");
+                        dropoffs[i].content = player2.inventory;
+                        player2.inventory = "";
+                    }
+                }
             }
         }
     }
@@ -218,7 +294,7 @@ function updateTimer() {
 function setTimer() {
     tickingSound.play();
     tickingSound.loop = true;
-    if(!playSounds) tickingSound.muted = true;
+    if (!playSounds) tickingSound.muted = true;
     timerId = setInterval(() => {
         timer--;
         updateTimer();

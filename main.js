@@ -5,6 +5,7 @@ let gameover = document.querySelector("#gameover");
 // let gameoverDiv = document.querySelector(".gameover-div");
 let finalScore = document.querySelector("#score-div");
 let playSounds = true;
+let twoPlayers = true;
 
 let intervalId = 0;
 let gameState = 0; //0 for splash, 1 for game, 2 for gameover
@@ -50,6 +51,8 @@ function buildGameOverScene() {
     finalScore.style.display = "block"
     // gameoverDiv.style.display = "block";
     timer = 0;
+    player.inventory = "";
+    player2.inventory = "";
     updateTimer();
 }
 
