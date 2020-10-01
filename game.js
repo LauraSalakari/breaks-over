@@ -79,7 +79,7 @@ document.addEventListener("keydown", (e) => {
 
     // pickup logic
     if (e.keyCode == 101 || e.key == "e") {
-        itemInteract(true);
+        player.itemInteract();
     }
 
     // check order submission
@@ -87,6 +87,8 @@ document.addEventListener("keydown", (e) => {
         console.log(fulfilOrder());
     }
 
+
+    // player 2
     if (twoPlayers) {
         // movement
         if (e.keyCode == 105 || e.key == 'i') {
@@ -104,7 +106,7 @@ document.addEventListener("keydown", (e) => {
 
         // pickup logic
         if (e.keyCode == 111 || e.key == "o") {
-            itemInteract(false);
+            player2.itemInteract();
         }
 
         // check order submission
@@ -139,6 +141,10 @@ function startGame() {
     }
 }
 
+function clearCanvas() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+}
+
 function drawPlayer() {
     player.movement();
     ctx.drawImage(player.image, player.x, player.y, 80, 80);
@@ -153,7 +159,6 @@ function drawPlayer() {
     }
 }
 
-
 function spawnIngredients() {
     ingArr.forEach((elem) => {
         ctx.drawImage(elem.image, elem.spawnPointX, elem.spawnPointY, elem.width, elem.height);
@@ -167,8 +172,6 @@ function createOrder() {
 function fulfilOrder() {
     console.log("Score: ", score);
     for (let i = 0; i < 2; i++) {
-        let match = false;
-
         let dropoffNames = dropoffs.map((elem) => {
             return elem.content.name;
         });
@@ -181,7 +184,7 @@ function fulfilOrder() {
             return orderNames.includes(elem);
         });
 
-        if (filtered.length === 3) {
+        if (filtered.length === 3 && (filtered[0] != filtered[1] && filtered[1] != filtered[2])) {
             score += currentOrders[i].score;
             playSound("correct");
             updateScore();
@@ -210,61 +213,6 @@ function drawDropoff() {
             ctx.drawImage(elem.content.image, elem.imageX, elem.imageY, 40, 40);
         }
     });
-}
-
-function itemInteract(player1) {
-    if (player1 === true) {
-        if (!player.inventory) {
-            for (let i = 0; i < ingArr.length; i++) {
-                let x = (player.x + 25) - (ingArr[i].spawnPointX + 25);
-                let y = (player.y + 25) - (ingArr[i].spawnPointY + 25);
-                let distance = Math.hypot(x, y);
-                if (distance <= player.pickUpDist) {
-                    playSound("pickup");
-                    player.inventory = ingArr[i];
-                }
-            }
-        }
-        else {
-            for (let i = 0; i < dropoffs.length; i++) {
-                let x = (player.x + 25) - dropoffs[i].x;
-                let y = (player.y + 25) - dropoffs[i].y;
-                let distance = Math.hypot(x, y);
-                if (distance <= player.pickUpDist) {
-                    playSound("deposit");
-                    dropoffs[i].content = player.inventory;
-                    player.inventory = "";
-                }
-            }
-        }
-    }
-    else {
-        if (twoPlayers) {
-            if (!player2.inventory) {
-                for (let i = 0; i < ingArr.length; i++) {
-                    let x = (player2.x + 25) - (ingArr[i].spawnPointX + 25);
-                    let y = (player2.y + 25) - (ingArr[i].spawnPointY + 25);
-                    let distance = Math.hypot(x, y);
-                    if (distance <= player2.pickUpDist) {
-                        playSound("pickup");
-                        player2.inventory = ingArr[i];
-                    }
-                }
-            }
-            else {
-                for (let i = 0; i < dropoffs.length; i++) {
-                    let x = (player2.x + 25) - dropoffs[i].x;
-                    let y = (player2.y + 25) - dropoffs[i].y;
-                    let distance = Math.hypot(x, y);
-                    if (distance <= player2.pickUpDist) {
-                        playSound("deposit");
-                        dropoffs[i].content = player2.inventory;
-                        player2.inventory = "";
-                    }
-                }
-            }
-        }
-    }
 }
 
 function drawCards() {

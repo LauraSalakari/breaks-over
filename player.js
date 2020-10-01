@@ -28,4 +28,30 @@ class Player {
                 break;
         }
     }
+
+    itemInteract() {
+        if (!this.inventory) {
+            for (let i = 0; i < ingArr.length; i++) {
+                let x = (this.x + 25) - (ingArr[i].spawnPointX + 25);
+                let y = (this.y + 25) - (ingArr[i].spawnPointY + 25);
+                let distance = Math.hypot(x, y);
+                if (distance <= this.pickUpDist) {
+                    playSound("pickup");
+                    this.inventory = ingArr[i];
+                }
+            }
+        }
+        else {
+            for (let i = 0; i < dropoffs.length; i++) {
+                let x = (this.x + 25) - dropoffs[i].x;
+                let y = (this.y + 25) - dropoffs[i].y;
+                let distance = Math.hypot(x, y);
+                if (distance <= this.pickUpDist) {
+                    playSound("deposit");
+                    dropoffs[i].content = this.inventory;
+                    this.inventory = "";
+                }
+            }
+        }
+    }
 }

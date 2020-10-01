@@ -2,7 +2,6 @@ let canvas = document.querySelector("canvas");
 let ctx = canvas.getContext("2d");
 let splash = document.querySelector("#splash");
 let gameover = document.querySelector("#gameover");
-// let gameoverDiv = document.querySelector(".gameover-div");
 let finalScore = document.querySelector("#score-div");
 let playSounds = true;
 let twoPlayers = false;
@@ -18,20 +17,15 @@ let bg = new Image();
 bg.src = "./images/kitchen.png";
 
 function buildSplashScene() {
-    // bg.src = "./images/splashscreen-green.png.png";
-    // ctx.drawImage(bg, 0, 0, canvas.width, canvas.height);
     splash.style.display = "block";
     gameover.style.display = "none";
     finalScore.style.display = "none"
-    // gameoverDiv.style.display = "none";
 }
 
 function buildGameScene() {
-    // bg.src = "./images/kitchen.png";
     splash.style.display = "none";
     gameover.style.display = "none";
     finalScore.style.display = "none"
-    // gameoverDiv.style.display = "none";
     ctx.drawImage(bg, 0, 0, canvas.width, canvas.height); // draw bg
     setTimer();
 
@@ -50,15 +44,10 @@ function buildGameOverScene() {
     splash.style.display = "none";
     gameover.style.display = "block";
     finalScore.style.display = "block"
-    // gameoverDiv.style.display = "block";
     timer = 0;
     player.inventory = "";
     player2.inventory = "";
     updateTimer();
-}
-
-function clearCanvas() {
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
 }
 
 btnTop.addEventListener("click", () => {
@@ -94,8 +83,7 @@ switchImg.addEventListener("click", () => {
     else {
         switchImg.style.transform = "none";
         twoPlayers = false;
-    }
-    
+    }  
 })
 
 window.addEventListener("load", () => {

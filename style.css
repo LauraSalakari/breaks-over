@@ -117,25 +117,6 @@ canvas {
     display: none;
 }
 
-/* .gameover-div {
-    position: absolute;
-    top: 221px;
-    left: 70px;
-    height: 381px;
-    width: 640px;
-    display: none;
-}
-
-.positioning-div{
-    height: 300px;
-}
-
-.gameover-div span{
-    padding-left: 300px;
-    padding-top: 400px;
-    font-size: 2em;
-} */
-
 #gameover {
     display: none;
 }

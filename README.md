@@ -36,38 +36,47 @@ Break's Over is a small but hectic game where your task is to fulfil as many sna
 - buildSplashScene(){}
 - buildGameScene(){}
 - buildGameOverScene(){}
+- UI event listeners
 
 ## game.js
 
-- playGame(){}
-- playerCollision(){}
-- itemInteract(){}
+- startGame(){}
+- drawPlayer(){}
+- spawnIngredients(){}
 - createOrder(){}
 - fulfilOrder(){}
+- drawDropoff(){}
+- drawCards(){}
 - drawCanvas(){}
 - updateCanvas(){}
+- updateScore(){}
+- setTimer(){}
+- updateTimer(){}
 - clearCanvas(){}
 - updateScore(){}
 - gameOver(){}
+- playSound(){}
+- gameplay event listeners
 
 ## player.js
 
 - Player() {this.x, this.y, this.inventory}
 - movement(){}
-- showInventory(){}
-- pickupItem(){}
-- depositItem(){}
+- itemInteract()
 
 ## order.js
 
 - Order(){this.ingredients, this.scoreValue}
-- drawCard(){}
-- removeCard(){}
+- draftIngredients(){}
 
 ## ingredient.js
+
 - Ingredient(){this.name, this.Image, this.spawnPoint[, this.cookingMethod]}
-- drawIngredient(){}
-- [cook(){}]
+
+## dropoff.js
+
+- Dropoff(){this.x, this.y, this.content, this.imageY, this.imageX}
+- clearDropoff(){}
 
 # States and States Transitions
 - splashScene
@@ -114,6 +123,7 @@ Break's Over is a small but hectic game where your task is to fulfil as many sna
 ## Git
 
 [Github Repository](https://github.com/LauraSalakari/breaks-over)
+
 [Github Pages](https://laurasalakari.github.io/breaks-over/)
 
 ## Slides
