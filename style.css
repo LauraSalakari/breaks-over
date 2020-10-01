@@ -1,142 +1,141 @@
-@import url('https://fonts.googleapis.com/css2?family=Gloria+Hallelujah&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Gloria+Hallelujah&display=swap");
 
 body {
-    font-family: "Gloria Hallelujah";
-    background-color: #2f3438;
-    background-image: url("images/bg-tv.png");
-    background-size: 900px 700px;
-    background-repeat: no-repeat;
-    margin: 0;
-    padding: 0;
-    display:flex;
+  font-family: "Gloria Hallelujah";
+  background-color: #2f3438;
+  background-image: url("images/bg-tv.png");
+  background-size: 900px 700px;
+  background-repeat: no-repeat;
+  margin: 0;
+  padding: 0;
+  display: flex;
 }
 
 canvas {
-    position: absolute;
-    top: 221px;
-    left: 70px;
+  position: absolute;
+  top: 221px;
+  left: 70px;
 }
 
 .btn {
-    height: 80px;
-    width: 95px;
-    opacity: 30%;
-    background-color: #F0C834;
-    border-radius:50%;
-    cursor: pointer;
-    outline: 0;
+  height: 80px;
+  width: 95px;
+  opacity: 30%;
+  background-color: #f0c834;
+  border-radius: 50%;
+  cursor: pointer;
+  outline: 0;
 }
 
 .btn-top {
-    position: absolute;
-    top: 248px;
-    left: 748px;
+  position: absolute;
+  top: 248px;
+  left: 748px;
 }
 
 .btn-bottom {
-    position:absolute;
-    top: 380px;
-    left: 748px;
+  position: absolute;
+  top: 380px;
+  left: 748px;
 }
 
 .game-ui {
-    margin-left: 940px;
-    margin-top: 60px;
-    width: 200px;
-    background-color: #50959F;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 20px 0;
+  margin-left: 940px;
+  margin-top: 60px;
+  width: 200px;
+  background-color: #50959f;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px 0;
 }
 
 .score {
-    font-size: 1.5em;
-    text-align: center;
+  font-size: 1.5em;
+  text-align: center;
 }
 
 .order-cards {
-    display:flex;
-    flex-direction: column;
-
+  display: flex;
+  flex-direction: column;
 }
 
 .order {
-    display:flex;
-    flex-direction: column;
-    border: 2px solid black;
-    margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  border: 2px solid black;
+  margin-top: 20px;
 }
 
 .ing {
-    height: 60px;
-    width: 60px;
-    margin: 5px;
-    border: 1px solid black;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  height: 60px;
+  width: 60px;
+  margin: 5px;
+  border: 1px solid black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .ing img {
-    height:40px;
-    width: 40px;
+  height: 40px;
+  width: 40px;
 }
 
 .timer {
-    height: 50px;
-    padding: 20px;
-    text-align: center;
-    background-color: #F0C836;
-    position: absolute;
-    left: 680px;
-    top: 60px;
+  height: 50px;
+  padding: 20px;
+  text-align: center;
+  background-color: #f0c836;
+  position: absolute;
+  left: 680px;
+  top: 60px;
 }
 
-#play{
-    position: absolute;
-    top: 330px;
-    left: 750px;
+#play {
+  position: absolute;
+  top: 330px;
+  left: 750px;
 }
 
-#sound{
-    position:absolute;
-    top:460px;
-    left:760px;
+#sound {
+  position: absolute;
+  top: 460px;
+  left: 760px;
 }
 
-.game-area img{
-    position: absolute;
-    top: 221px;
-    left: 70px;
-    height: 381px;
-    width: 640px;
+.game-area img {
+  position: absolute;
+  top: 221px;
+  left: 70px;
+  height: 381px;
+  width: 640px;
 }
 
 #splash {
-    display: none;
+  display: none;
 }
 
 #gameover {
-    display: none;
+  display: none;
 }
 
-#score-div{
-    position: absolute;
-    left: 340px;
-    top: 490px;
-    font-size: 2.5em;
-    display: none;
+#score-div {
+  position: absolute;
+  left: 340px;
+  top: 490px;
+  font-size: 2.5em;
+  display: none;
 }
 
 .switch {
-    position: absolute;
-    left: 740px;
-    top: 190px;
+  position: absolute;
+  left: 740px;
+  top: 190px;
 }
 
 #switch-img {
-    height: 44px;
-    width: 62px;
-    cursor: pointer;
+  height: 44px;
+  width: 62px;
+  cursor: pointer;
 }

@@ -1,5 +1,5 @@
 class Ingredient {
-    constructor(name, imageURL, spawnX, spawnY){
+    constructor(name, imageURL, spawnX, spawnY) {
         this.name = name;
         this.image = new Image();
         this.image.src = imageURL;

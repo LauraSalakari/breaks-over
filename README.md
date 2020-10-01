@@ -7,7 +7,8 @@ Break's Over is a small but hectic game where your task is to fulfil as many sna
 ## MVP (DOM - CANVAS)
 
 ### CANVAS
-- character can move around freely on canvas and collides with obstacles appropriately 
+
+- character can move around freely on canvas and collides with obstacles appropriately
 - character can pick up, carry and deposit items
 - interacting with the assigned spots brings up the correct ingredient and puts it into the player's inventory
 - character can send off fulfilled orders
@@ -16,6 +17,7 @@ Break's Over is a small but hectic game where your task is to fulfil as many sna
 - timer starts and ends the round
 
 ### DOM
+
 - order cards are DOM elements
 
 ## Backlog
@@ -79,13 +81,13 @@ Break's Over is a small but hectic game where your task is to fulfil as many sna
 - clearDropoff(){}
 
 # States and States Transitions
+
 - splashScene
   - transition to: on first load, on main menu button click
 - gameScene
   - transition to: on play
 - gameOverScene
   - transition to: on time over, on give up
-  
 
 # Tasks
 
@@ -127,5 +129,3 @@ Break's Over is a small but hectic game where your task is to fulfil as many sna
 [Github Pages](https://laurasalakari.github.io/breaks-over/)
 
 ## Slides
-
-

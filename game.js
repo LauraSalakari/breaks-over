@@ -117,10 +117,10 @@ document.addEventListener("keydown", (e) => {
 });
 
 document.addEventListener("keyup", (e) => {
-    if((e.keyCode == 87 || e.key == 'w') || (e.keyCode == 65 || e.key == 'a') || (e.keyCode == 83 || e.key == 's') ||(e.keyCode == 68 || e.key == 'd')){
+    if ((e.keyCode == 87 || e.key == 'w') || (e.keyCode == 65 || e.key == 'a') || (e.keyCode == 83 || e.key == 's') || (e.keyCode == 68 || e.key == 'd')) {
         player.direction = "";
     }
-    else if((e.keyCode == 105 || e.key == 'i') || (e.keyCode == 106 || e.key == 'j') || (e.keyCode == 107 || e.key == 'k') ||(e.keyCode == 108 || e.key == 'l')){
+    else if ((e.keyCode == 105 || e.key == 'i') || (e.keyCode == 106 || e.key == 'j') || (e.keyCode == 107 || e.key == 'k') || (e.keyCode == 108 || e.key == 'l')) {
         player2.direction = "";
     }
 });

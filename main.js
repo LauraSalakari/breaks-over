@@ -76,14 +76,14 @@ btnBottom.addEventListener("click", () => {
 
 switchImg.addEventListener("click", () => {
     playSound("click");
-    if(!twoPlayers){
+    if (!twoPlayers) {
         switchImg.style.transform = "rotateY(180deg)";
         twoPlayers = true;
     }
     else {
         switchImg.style.transform = "none";
         twoPlayers = false;
-    }  
+    }
 })
 
 window.addEventListener("load", () => {

@@ -1,5 +1,5 @@
 class Dropoff {
-    constructor(x, y){
+    constructor(x, y) {
         this.x = x;
         this.y = y;
         this.content = "";
@@ -7,7 +7,7 @@ class Dropoff {
         this.imageY = this.y;
     }
 
-    clearDropoff(){
+    clearDropoff() {
         this.content = "";
     }
 }

@@ -8,7 +8,7 @@ class Order {
 
     draftIngredients() {
         let orderArr = [];
-        
+
         let copy = [...this.options];
         for (let i = 0; i < this.n; i++) {
             let index = Math.floor(Math.random() * copy.length);
