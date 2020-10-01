@@ -50,6 +50,7 @@ let submitWrong = new Audio("audio/submit-wrong-sound.mp3");
 let pickupSound = new Audio("audio/pickup-sound.mp3");
 let depositSound = new Audio("audio/deposit-sound.mp3");
 let clickSound = new Audio("audio/click-sound.mp3");
+let tickingSound = new Audio("audio/ticking-sound.mp3");
 
 // movement & interact logic
 document.addEventListener("keydown", (e) => {
@@ -215,10 +216,15 @@ function updateTimer() {
 }
 
 function setTimer() {
+    tickingSound.play();
+    tickingSound.loop = true;
+    if(!playSounds) tickingSound.muted = true;
     timerId = setInterval(() => {
         timer--;
         updateTimer();
         if (timer <= 0) {
+            tickingSound.pause();
+            tickingSound.currentTime = 0;
             clearInterval(timerId);
             timer = 0;
         }

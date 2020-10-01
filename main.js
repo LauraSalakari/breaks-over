@@ -7,7 +7,7 @@ let finalScore = document.querySelector("#score-div");
 let playSounds = true;
 
 let intervalId = 0;
-let gameState = 2; //0 for splash, 1 for game, 2 for gameover
+let gameState = 0; //0 for splash, 1 for game, 2 for gameover
 
 let btnTop = document.querySelector(".btn-top");
 let btnBottom = document.querySelector(".btn-bottom");
@@ -77,6 +77,7 @@ btnTop.addEventListener("click", () => {
 btnBottom.addEventListener("click", () => {
     playSound("click");
     playSounds = !playSounds;
+    tickingSound.muted = !tickingSound.muted;
     playSound("click");
 });
 
