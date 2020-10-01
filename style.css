@@ -147,3 +147,15 @@ canvas {
     font-size: 2.5em;
     display: none;
 }
+
+.switch {
+    position: absolute;
+    left: 740px;
+    top: 190px;
+}
+
+#switch-img {
+    height: 44px;
+    width: 62px;
+    cursor: pointer;
+}
