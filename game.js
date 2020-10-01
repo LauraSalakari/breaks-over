@@ -20,12 +20,12 @@ let dropoffs = [dropoff1, dropoff2, dropoff3];
 
 // create ingredients
 
-let popcorn = new Ingredient("popcorn", "images/popcorn.png", 20, 300);
-let carrot = new Ingredient("carrot", "images/carrots.png", 580, 40);
-let dogbones = new Ingredient("dogbones", "images/dogbones.png", 20, 120);
-let cake = new Ingredient("cake", "images/cake.png", 220, 300);
-let soda = new Ingredient("soda", "images/soda.png", 400, 200);
-let icecream = new Ingredient("icecream", "images/icecream.png", 580, 300);
+let popcorn = new Ingredient("popcorn", "images/popcorn.png", 15, 314);
+let carrot = new Ingredient("carrot", "images/carrots.png", 570, 84);
+let dogbones = new Ingredient("dogbones", "images/dogbones.png", 12, 84);
+let cake = new Ingredient("cake", "images/cake.png", 350, 320);
+let soda = new Ingredient("soda", "images/soda.png", 210, 185);
+let icecream = new Ingredient("icecream", "images/icecream.png", 570, 320);
 
 let ingArr = [popcorn, carrot, dogbones, cake, soda, icecream];
 
@@ -38,6 +38,10 @@ let ing11 = document.querySelector("#ing11");
 let ing12 = document.querySelector("#ing12");
 
 let orderCardImg = [ing00, ing01, ing02, ing10, ing11, ing12];
+
+// create other DOM elements
+let scoreUI = document.querySelector(".score span");    
+let timerUI = document.querySelector(".timer span");
 
 // create sound variables
 
@@ -202,12 +206,11 @@ function drawCards() {
 }
 
 function updateScore() {
-    scoreUI = document.querySelector(".score span");
     scoreUI.innerText = String(score);
+    finalScore.innerText = String(score);
 }
 
 function updateTimer() {
-    timerUI = document.querySelector(".timer span");
     timerUI.innerText = String(timer);
 }
 

@@ -1,4 +1,7 @@
+@import url('https://fonts.googleapis.com/css2?family=Gloria+Hallelujah&display=swap');
+
 body {
+    font-family: "Gloria Hallelujah";
     background-color: #2f3438;
     background-image: url("images/bg-tv.png");
     background-size: 900px 700px;
@@ -114,6 +117,33 @@ canvas {
     display: none;
 }
 
+/* .gameover-div {
+    position: absolute;
+    top: 221px;
+    left: 70px;
+    height: 381px;
+    width: 640px;
+    display: none;
+}
+
+.positioning-div{
+    height: 300px;
+}
+
+.gameover-div span{
+    padding-left: 300px;
+    padding-top: 400px;
+    font-size: 2em;
+} */
+
 #gameover {
+    display: none;
+}
+
+#score-div{
+    position: absolute;
+    left: 340px;
+    top: 490px;
+    font-size: 2.5em;
     display: none;
 }
