@@ -16,8 +16,8 @@ player.invenBubble.src = "images/inven-bubble.png";
 let player2 = new Player();
 player2.image.src = "images/player2.png";
 player2.invenBubble.src = "images/inven-bubble.png";
-player2.x = 400;
-player2.y = 100;
+player2.x = 440;
+player2.y = 220;
 
 // create dropoffs
 

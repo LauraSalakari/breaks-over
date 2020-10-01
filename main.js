@@ -86,6 +86,7 @@ btnBottom.addEventListener("click", () => {
 });
 
 switchImg.addEventListener("click", () => {
+    playSound("click");
     if(!twoPlayers){
         switchImg.style.transform = "rotateY(180deg)";
         twoPlayers = true;
