@@ -139,3 +139,13 @@ canvas {
   width: 62px;
   cursor: pointer;
 }
+
+.p2-controls {
+  position: absolute;
+  left: 830px;
+  top: 170px;
+}
+
+.p2-controls img {
+  height: 70px;
+}
