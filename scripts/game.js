@@ -60,6 +60,10 @@ let depositSound = new Audio("audio/deposit-sound.mp3");
 let clickSound = new Audio("audio/click-sound.mp3");
 let tickingSound = new Audio("audio/ticking-sound.mp3");
 
+submitCorrect.volume = 0.4;
+submitWrong.volume = 0.4;
+tickingSound.volume = 0.6;
+
 // movement & interact logic
 document.addEventListener("keydown", (e) => {
     // player 1
